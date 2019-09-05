@@ -15,7 +15,7 @@ Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL)
 
 \item{exp_var}{String of main exposure variable name}
 
-\item{output}{String of path to store the output word file}
+\item{output}{String of path to store the output word file. For example, "Table1.doc" or "Table1.rtf"}
 }
 \value{
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
