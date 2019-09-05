@@ -1,6 +1,6 @@
 Package: Table1
 Title: Create journal style characteristic table
-Version: 0.0.0.9000
+Version: 1.0
 Authors@R: 
     person(given = "First",
            family = "Last",
@@ -12,4 +12,5 @@ License: What license it uses
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Import: dplyr, rtf
 
