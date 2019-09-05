@@ -1,10 +1,13 @@
 
+
 #' Table1 function
 #'
 #' This function helps to create journal style "Table 1" for numerical/continuous and categorical columns.
 #' For numerical/continuous columns, the results will be mean(SD)
 #' For categorical columns, the results will be n(%)
 #' The output will be saved in word file.
+#' @title Create journal style characteristic table
+#' @description Create journal style characteristic table
 #' @param data A dataframe including the exposure variable.
 #' @param numcol A vector of numerical column names in character. Default to NULL.
 #' @param catcol A vector of categorical column names in character. Default to NULL.
@@ -17,15 +20,16 @@
 #' a = sample(1:100, 100, TRUE),
 #' b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
 #' c = sample(1:100, 100, TRUE),
-#' d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
+#' d = sample(c('Exposed', 'Unexposed'), 100, TRUE, prob=c(0.6, 0.4)))
 #'
 #' Table1(df, c('a', 'c'), 'b', 'd')
 #'     name     Exposed   Unexposed P_val
-#' 1   b: N   20 (34.5)   17 (40.5) 0.163
-#' 2 b: UNK   16 (27.6)    5 (11.9)
-#' 3   b: Y   22 (37.9)   20 (47.6)
-#' 4      a   55.5 (30) 51.9 (27.2) 0.487
-#' 5      c 49.2 (31.3) 53.2 (23.5) 0.459
+#'     b: N   20 (34.5)   17 (40.5) 0.163
+#'   b: UNK   16 (27.6)    5 (11.9)
+#'     b: Y   22 (37.9)   20 (47.6)
+#'        a   55.5 (30) 51.9 (27.2) 0.487
+#'        c 49.2 (31.3) 53.2 (23.5) 0.459
+
 
 Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL){
   pkg = c('dplyr', 'rtf')
@@ -33,7 +37,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL){
     if (!p %in% rownames(installed.packages())) install.packages(p)
     library(p, character.only = T)
   }
-  
+
   data[[exp_var]] = as.factor(data[[exp_var]])
   for(level in levels(data[[exp_var]])){
     data1 = data %>% filter(!!sym(exp_var)==level)
@@ -78,3 +82,5 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL){
     done(rtffile)
   }
 }
+
+
