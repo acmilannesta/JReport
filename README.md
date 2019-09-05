@@ -28,12 +28,15 @@ String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 
 ## Examples
-<br/>  df = data.frame(a = sample(1:100, 100, TRUE),
-<br />  b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
-<br />  c = sample(1:100, 100, TRUE),
-<br />  d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
+```
+df = data.frame(
+  a = sample(1:100, 100, TRUE),
+  b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
+  c = sample(1:100, 100, TRUE),
+  d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
 
 Table1(df, c('a', 'c'), 'b', 'd')
+```
 
 | Name        | Exposed           | Unexposed  | P_val
 | ------------- |:-------------:| -----:|-----------:|
