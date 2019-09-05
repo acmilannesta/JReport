@@ -2,9 +2,9 @@
 
 ## Description
 This function helps to create journal style "Table 1" for numerical/continuous and categorical columns. 
-<br/>For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
-<br/>For categorical columns, the results will be n(%). P-value is computed from Chi-square test statistic.
-<br/>The output will be saved in word (rft) file.
+\\For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
+\\For categorical columns, the results will be n(%). P-value is computed from Chi-square test statistic.
+\\The output will be saved in word (rft) file.
 
 ## Install
 `devtools::install_github('acmilannesta/Table1')`
