@@ -24,7 +24,7 @@ String of main exposure variable name
 output	
 String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
 
-Value
+## Return Value
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 
 Examples
