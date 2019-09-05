@@ -10,7 +10,7 @@ The output will be saved in word (rft) file.
 `devtools::install_github('acmilannesta/Table1')`
 
 ## Usage
-Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL)
+Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)
 
 ## Arguments
 data	
@@ -28,6 +28,10 @@ String of main exposure variable name
 output	
 String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
 
+overall	
+Whether to add a column for overall subjects. Default to TRUE
+
+
 ## Return Value
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 
@@ -42,10 +46,12 @@ df = data.frame(
 Table1(df, c('a', 'c'), 'b', 'd')
 ```
 
-| Name        | Exposed           | Unexposed  | P_val
-| ------------- |:-------------:| -----:|-----------:|
-| b: N  | 20 (34.5)  | 17 (40.5) | 0.163 |
-| b: UNK  | 16 (27.6)  |  5 (11.9) ||
-|   b: Y  | 22 (37.9)  | 20 (47.6) ||
-|      a  | 55.5 (30) | 51.9 (27.2) |0.487|
-|      c | 49.2 (31.3) | 53.2 (23.5) |0.459|
+
+
+|name |Overall (n=100) |Exposed (n=60) |Unexposed (n=40)  |   P_val
+| ------------- |:-------------:| -----:|-----------:|:------------:|
+|b: N      |   28 (28)       | 18 (30)        |  10 (25)    | 0.804|
+|b: UNK    |   27 (27)    |    15 (25)        |  12 (30)||
+|b: Y      |   45 (45)       | 27 (45)       |   18 (45)||
+|a        |    54.2 (28.6)  |  52.2 (28.3)   |   57.2 (29.2) |0.408|
+|c         |   50.1 (31)   | 50.1 (29.7)    |    50.1 (33.3) |0.935|
