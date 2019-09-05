@@ -30,9 +30,9 @@ Create journal style characteristic table
 Table1 function
 
 This function helps to create journal style "Table 1" for numerical/continuous and categorical columns.
-For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
-For categorical columns, the results will be n(%). P-value is computed from chi-square test statistic
-The output will be saved in word file.
+\cr For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
+\cr For categorical columns, the results will be n(\%). P-value is computed from chi-square test statistic.
+\cr The output will be saved in word file.
 }
 \examples{
 df = data.frame(
@@ -47,5 +47,5 @@ b: N         28 (28)        18 (30)          10 (25)     0.804
 b: UNK       27 (27)        15 (25)          12 (30)
 b: Y         45 (45)        27 (45)          18 (45)
 a            54.2 (28.6)    52.2 (28.3)      57.2 (29.2) 0.408
-c            50.1 (31)    50.1 (29.7)        50.1 (33.3) 0.935
+c            50.1 (31)      50.1 (29.7)      50.1 (33.3) 0.935
 }
