@@ -2,10 +2,10 @@ Package: Table1
 Title: Create journal style characteristic table
 Version: 1.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Zhensheng",
+           family = "Wang",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "chestnut890123@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Create journal style characteristic table.
 License: What license it uses
@@ -13,4 +13,3 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Import: dplyr, rtf
-
