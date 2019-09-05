@@ -1,9 +1,13 @@
 # Table1
+
 ## Description
 This function helps to create journal style "Table 1" for numerical/continuous and categorical columns. 
 For numerical/continuous columns, the results will be mean(SD).
 For categorical columns, the results will be n(%) 
 The output will be saved in word (rft) file.
+
+## Install
+`devtools::install_github('acmilannesta/Table1')`
 
 ## Usage
 Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL)
