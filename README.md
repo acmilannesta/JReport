@@ -2,9 +2,12 @@
 
 ## Description
 This function helps to create journal style "Table 1" for numerical/continuous and categorical columns. 
-\\For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
-\\For categorical columns, the results will be n(%). P-value is computed from Chi-square test statistic.
-\\The output will be saved in word (rft) file.
+
+For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
+
+For categorical columns, the results will be n(%). P-value is computed from Chi-square test statistic.
+
+The output will be saved in word (rft) file.
 
 ## Install
 `devtools::install_github('acmilannesta/Table1')`
@@ -13,23 +16,17 @@ This function helps to create journal style "Table 1" for numerical/continuous a
 Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)
 
 ## Arguments
-data	
-A dataframe including the exposure variable.
+data: A dataframe including the exposure variable.
 
-numcol	
-A vector of numerical column names in character. Default to NULL.
+numcol: A vector of numerical column names in character. Default to NULL.
 
-catcol	
-A vector of categorical column names in character. Default to NULL.
+catcol: A vector of categorical column names in character. Default to NULL.
 
-exp_var	
-String of main exposure variable name
+exp_var: String of main exposure variable name
 
-output	
-String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
+output: String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
 
-overall	
-Whether to add a column for overall subjects. Default to TRUE
+overall: Whether to add a column for overall subjects. Default to TRUE
 
 
 ## Return Value
