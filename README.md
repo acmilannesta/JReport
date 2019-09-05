@@ -27,7 +27,7 @@ String of path to store the output word file. E.g., 'Table1.rtf' or 'Table1.doc'
 ## Return Value
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 
-Examples
+## Examples
 <br/>  df = data.frame(a = sample(1:100, 100, TRUE),
 <br />  b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
 <br />  c = sample(1:100, 100, TRUE),
