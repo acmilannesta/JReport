@@ -7,7 +7,7 @@ For numerical/continuous columns, the results will be mean(SD). P-value is compu
 
 For categorical columns, the results will be n(%). P-value is computed from Chi-square test statistic.
 
-The output will be saved in word (rft) file.
+The output will be saved in word (rtf) file.
 
 ## Install
 `devtools::install_github('acmilannesta/Table1')`
@@ -45,7 +45,7 @@ Table1(df, c('a', 'c'), 'b', 'd')
 
 
 
-|name |Overall (n=100) |Exposed (n=60) |Unexposed (n=40)  |   P_val
+|Name |Overall (n=100) |Exposed (n=60) |Unexposed (n=40)  |   P_val
 |:-------------|:-------------:|:-----:|:-----------:|:------------:|
 |b: N      |   28 (28)       | 18 (30)        |  10 (25)    | 0.804|
 |b: UNK    |   27 (27)    |    15 (25)        |  12 (30)||
