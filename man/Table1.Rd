@@ -28,16 +28,16 @@ The output will be saved in word file.
 }
 \examples{
 df = data.frame(
-a = sample(1:100, 100, TRUE),
-b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
-c = sample(1:100, 100, TRUE),
-d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
+    a = sample(1:100, 100, TRUE),
+    b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
+    c = sample(1:100, 100, TRUE),
+    d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
 
 Table1(df, c('a', 'c'), 'b', 'd')
     name     Exposed   Unexposed P_val
-1   b: N   20 (34.5)   17 (40.5) 0.163
-2 b: UNK   16 (27.6)    5 (11.9)
-3   b: Y   22 (37.9)   20 (47.6)
-4      a   55.5 (30) 51.9 (27.2) 0.487
-5      c 49.2 (31.3) 53.2 (23.5) 0.459
+    b: N   20 (34.5)   17 (40.5) 0.163
+  b: UNK   16 (27.6)    5 (11.9)
+    b: Y   22 (37.9)   20 (47.6)
+       a   55.5 (30) 51.9 (27.2) 0.487
+       c 49.2 (31.3) 53.2 (23.5) 0.459
 }
