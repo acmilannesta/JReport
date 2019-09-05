@@ -41,7 +41,7 @@ df = data.frame(
   a = sample(1:100, 100, TRUE),
   b = sample(c('Y', 'N', 'UNK'), 100, TRUE, prob=c(0.5, 0.3, 0.2)),
   c = sample(1:100, 100, TRUE),
-  d = sample(0:1, 100, TRUE, prob=c(0.6, 0.4)))
+  d = sample(c('Exposed', 'Unexposed'), 100, TRUE, prob=c(0.6, 0.4)))
 
 Table1(df, c('a', 'c'), 'b', 'd')
 ```
