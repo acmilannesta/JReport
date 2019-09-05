@@ -9,7 +9,7 @@
 #' @param numcol A vector of numerical column names in character. Default to NULL.
 #' @param catcol A vector of categorical column names in character. Default to NULL.
 #' @param exp_var String of main exposure variable name
-#' @param output String of path to store the output word file
+#' @param output String of path to store the output word file. For example, 'Table1.doc' or 'Table1.rtf'
 #' @return  If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 #' @export
 #' @examples
