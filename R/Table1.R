@@ -28,6 +28,12 @@
 #' 5      c 49.2 (31.3) 53.2 (23.5) 0.459
 
 Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL){
+  pkg = c('dplyr', 'rtf')
+  for (p in pkg){
+    if (!p %in% rownames(installed.packages())) install.packages(p)
+    library(p, character.only = T)
+  }
+  
   data[[exp_var]] = as.factor(data[[exp_var]])
   for(level in levels(data[[exp_var]])){
     data1 = data %>% filter(!!sym(exp_var)==level)
