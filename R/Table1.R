@@ -81,7 +81,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
   if(is.null(output)) return(final)
   else {
     rtffile = RTF(output)
-    addTable(rtffile, final, col.justify = c('L', rep('C', length(levels(data[[exp_var]]))+1)), header.col.justify = 'C')
+    addTable(rtffile, final, col.justify = c('L', rep('C', length(levels)+1)), header.col.justify = 'C')
     done(rtffile)
   }
 }
