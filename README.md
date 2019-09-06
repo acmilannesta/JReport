@@ -10,10 +10,12 @@ This package helps to create journal style descriptive tables. Currently it auto
 `devtools::install_github('acmilannesta/JReport')`
 
 ## Usage
-`Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL,
-  overall = TRUE, esdigits = 1, pdigits = 3, eps = 0.001)`
-
-`Table2(model, data, catcols = NULL, esdigits = 2, output = NULL, pdigits = 2, eps = 0.001)`
+```
+Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE, 
+       esdigits = 1, pdigits = 3, eps = 0.001)
+       
+Table2(model, data, catcols = NULL, esdigits = 2, output = NULL, pdigits = 2, eps = 0.001)
+```
 
 ## Arguments
 data: A dataframe including the exposure variable.
