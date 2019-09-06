@@ -32,6 +32,10 @@
 
 
 Table2 = function(model, data, catcols=NULL, esdigits=2, output=NULL, pdigits=2, eps=0.001){
+  for (p in c('dplyr', 'rtf')){
+    if (!p %in% rownames(installed.packages())) install.packages(p)
+    library(p, character.only = T)
+  }
   out = round(data.frame(ES=exp(summary(model)$coefficients[, 1]),
                          LCL = exp(summary(model)$coefficients[, 1]-1.96*summary(model)$coefficients[, 2]),
                          UCL = exp(summary(model)$coefficients[, 1]+1.96*summary(model)$coefficients[, 2])), esdigits) %>%
