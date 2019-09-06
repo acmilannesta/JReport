@@ -1,5 +1,5 @@
 Package: JReport
-Title: Create journal style characteristic table
+Title: Create journal style tables
 Version: 1.0
 Authors@R: 
     person(given = "Zhensheng",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "chestnut890123@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Create journal style characteristic table.
+Description: Create journal style tables.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
