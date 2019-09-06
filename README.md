@@ -1,7 +1,9 @@
 # Journal style reporting (R-package "JReport")
 
 ## Description
-This package helps to create journal style descriptive table (so called "Table 1") and model output table (so called "Table 2"). 
+This package helps to create journal style descriptive tables. Currently it automate table outputs as:
+1. Descriptive Tables (Table1)
+2. Model output table (Table2) 
 
 
 ## Install
