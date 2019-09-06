@@ -8,7 +8,8 @@ This package helps to create journal style descriptive table (so called "Table 1
 `devtools::install_github('acmilannesta/JReport')`
 
 ## Usage
-`Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)`
+`Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL,
+  overall = TRUE, esdigits = 1, pdigits = 3, eps = 0.001)`
 
 `Table2(model, data, catcols = NULL, esdigits = 2, output = NULL, pdigits = 2, eps = 0.001)`
 
@@ -27,7 +28,7 @@ overall: Whether to add a column for overall subjects. Default to TRUE
 
 model: Object output from lm, glm or coxph
 
-esdigits: Controlling the effect size digits. Default to 2.
+esdigits: Controlling the effect size, mean, SD and percent digits.
 
 pdigits: Controlling the significant p-value digits. Default to 2.
 
@@ -58,9 +59,10 @@ Table1(df, c('a', 'c'), 'b', 'd')
 
 |Name |Overall (n=100) |Exposed (n=60) |Unexposed (n=40)  |   P_val
 |:-------------|:-------------:|:-----:|:-----------:|:------------:|
-|b: N      |   28 (28)       | 18 (30)        |  10 (25)    | 0.804|
-|b: UNK    |   27 (27)    |    15 (25)        |  12 (30)||
-|b: Y      |   45 (45)       | 27 (45)       |   18 (45)||
+b||||0.804
+|N      |   28 (28)       | 18 (30)        |  10 (25)    ||
+|UNK    |   27 (27)    |    15 (25)        |  12 (30)||
+|Y      |   45 (45)       | 27 (45)       |   18 (45)||
 |a        |    54.2 (28.6)  |  52.2 (28.3)   |   57.2 (29.2) |0.408|
 |c         |   50.1 (31)   | 50.1 (29.7)    |    50.1 (33.3) |0.935|
 
