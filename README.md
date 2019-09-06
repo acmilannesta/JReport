@@ -76,6 +76,6 @@ Table2(log, mtcars, 'am')
 (Intercept)  |  0 (0, 0.03)  |      0.006
 mpg     |       1.98 (1.2, 3.24)  | 0.007
 am||
-  0    |        Ref         |       Ref
-  1     |       0.05 (0, 1.14)    | 0.060
+  &nbsp;&nbsp;0    |        Ref         |       Ref
+  &nbsp;&nbsp;1     |       0.05 (0, 1.14)    | 0.060
 
