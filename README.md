@@ -1,6 +1,6 @@
 # Journal style reporting (R-package "JReport")
+<img style="float: right;" src="https://github.com/acmilannesta/JReport/blob/master/Icon.JPG">
 
-![alt text](https://github.com/acmilannesta/JReport/blob/master/Icon.JPG)
 
 ## Description
 This package helps to create journal style descriptive tables. Currently it automate table outputs as:
