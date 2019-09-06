@@ -18,7 +18,7 @@ Table2(model, data, catcols = NULL, esdigits = 2, output = NULL,
 
 \item{pdigits}{Controlling the significant p-value digits. Default to 2.}
 
-\item{eps}{P-value tolerane. Those less than eps are formatted as "< [eps]"}
+\item{eps}{P-value tolerane. Those less than eps are formatted as "< [eps]". Default to 0.001}
 
 \item{catcol}{A vector of factrozied categorical column names in character.  Default to NULL.}
 }
