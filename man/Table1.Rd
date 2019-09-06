@@ -5,7 +5,7 @@
 \title{Create journal style characteristic table}
 \usage{
 Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL,
-  overall = TRUE)
+  overall = TRUE, esdigits = 1, pdigits = 3, eps = 0.001)
 }
 \arguments{
 \item{data}{A dataframe including the exposure variable.}
@@ -19,6 +19,12 @@ Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL,
 \item{output}{String of path to store the output word file. For example, 'Table1.doc' or 'Table1.rtf'}
 
 \item{overall}{Whether to add a column for overall subjects. Default to TRUE}
+
+\item{esdigits}{Controlling the SD, mean and percent digits. Default to 1.}
+
+\item{pdigits}{Controlling the significant p-value digits. Default to 1.}
+
+\item{eps}{P-value tolerane. Those less than eps are formatted as "< [eps]". Default to 0.001}
 }
 \value{
 If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
@@ -42,10 +48,12 @@ c = sample(1:100, 100, TRUE),
 d = sample(c('Exposed', 'Unexposed'), 100, TRUE, prob=c(0.6, 0.4)))
 
 Table1(df, c('a', 'c'), 'b', 'd', overall=TRUE)
-name Overall (n=100) Exposed (n=60) Unexposed (n=40)     P_val
-b: N         28 (28)        18 (30)          10 (25)     0.804
-b: UNK       27 (27)        15 (25)          12 (30)
-b: Y         45 (45)        27 (45)          18 (45)
-a            54.2 (28.6)    52.2 (28.3)      57.2 (29.2) 0.408
-c            50.1 (31)      50.1 (29.7)      50.1 (33.3) 0.935
+
+Name     Overall (n=100)  Exposed (n=60)  Unexposed (n=40)  P_val
+b                                                           0.804
+N        28 (28)          18 (30)         10 (25)
+UNK      27 (27)          15 (25)         12 (30)
+Y        45 (45)          27 (45)         18 (45)
+a        54.2 (28.6)      52.2 (28.3)     57.2 (29.2)       0.408
+c        50.1 (31)        50.1 (29.7)     50.1 (33.3)       0.935
 }
