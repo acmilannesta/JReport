@@ -9,6 +9,7 @@ This package helps to create journal style descriptive table (so called "Table 1
 
 ## Usage
 `Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)`
+
 `Table2(model, data, catcols = NULL, esdigits = 2, output = NULL, pdigits = 2, eps = 0.001)`
 
 ## Arguments
