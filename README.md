@@ -13,7 +13,7 @@ The output will be saved in word (rtf) file.
 `devtools::install_github('acmilannesta/Table1')`
 
 ## Usage
-Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)
+`Table1(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall = TRUE)`
 
 ## Arguments
 data: A dataframe including the exposure variable.
