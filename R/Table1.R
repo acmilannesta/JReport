@@ -2,9 +2,9 @@
 #' Table1 function
 #'
 #' This function helps to create journal style "Table 1" for numerical/continuous and categorical columns.
-#' For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
-#' For categorical columns, the results will be n(%). P-value is computed from chi-square test statistic
-#' The output will be saved in word file.
+#' \cr For numerical/continuous columns, the results will be mean(SD). P-value is computed from Kruskal-Wallis Rank Sum test statistic.
+#' \cr For categorical columns, the results will be n(\%). P-value is computed from chi-square test statistic.
+#' \cr The output will be saved in word file.
 #' @title Create journal style characteristic table
 #' @description Create journal style characteristic table
 #' @param data A dataframe including the exposure variable.
@@ -13,6 +13,9 @@
 #' @param exp_var String of main exposure variable name
 #' @param output String of path to store the output word file. For example, 'Table1.doc' or 'Table1.rtf'
 #' @param overall Whether to add a column for overall subjects. Default to TRUE
+#' @param esdigits Controlling the SD, mean and percent digits. Default to 1.
+#' @param pdigits Controlling the significant p-value digits. Default to 1.
+#' @param eps P-value tolerane. Those less than eps are formatted as "< [eps]". Default to 0.001
 #' @return  If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 #' @export
 #' @examples
@@ -23,15 +26,18 @@
 #' d = sample(c('Exposed', 'Unexposed'), 100, TRUE, prob=c(0.6, 0.4)))
 #'
 #' Table1(df, c('a', 'c'), 'b', 'd', overall=TRUE)
-#' name Overall (n=100) Exposed (n=60) Unexposed (n=40)     P_val
-#' b: N         28 (28)        18 (30)          10 (25)     0.804
-#' b: UNK       27 (27)        15 (25)          12 (30)
-#' b: Y         45 (45)        27 (45)          18 (45)
-#' a            54.2 (28.6)    52.2 (28.3)      57.2 (29.2) 0.408
-#' c            50.1 (31)    50.1 (29.7)        50.1 (33.3) 0.935
+#'
+#' Name     Overall (n=100)  Exposed (n=60)  Unexposed (n=40)  P_val
+#' b                                                           0.804
+#' N        28 (28)          18 (30)         10 (25)
+#' UNK      27 (27)          15 (25)         12 (30)
+#' Y        45 (45)          27 (45)         18 (45)
+#' a        54.2 (28.6)      52.2 (28.3)     57.2 (29.2)       0.408
+#' c        50.1 (31)        50.1 (29.7)     50.1 (33.3)       0.935
 
 
-Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall=TRUE){
+
+Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, overall=TRUE, esdigits=1, pdigits=3, eps=0.001){
   for (p in c('dplyr', 'rtf')){
     if (!p %in% rownames(installed.packages())) install.packages(p)
     library(p, character.only = T)
@@ -46,15 +52,15 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
     df = data.frame()
     for(col in catcol){
       a = table(droplevels(data1[col]))
-      b = round(prop.table(a)*100, 1)
-      p = format.pval(chisq.test(table(data[[col]], data[[exp_var]]))$p.value, 3, 0.001)
+      b = round(prop.table(a)*100, esdigits)
       tmp = data.frame(a) %>%
         left_join(data.frame(b) %>% rename(Pct=Freq), by='Var1') %>%
-        rename(name=Var1) %>%
-        mutate(es_cl = paste0(Freq, ' (', Pct, ')'),
-               name = paste0(!!col, ': ', name)) %>%
+        rename(Variable=Var1) %>%
+        mutate(es_cl = paste0(Freq, ' (', Pct, ')')) %>%
+        add_row(Variable=col, es_cl='', .before = 1) %>%
         select(-c(Freq, Pct))
       if(level==tail(levels, n=1)){
+        p = format.pval(chisq.test(table(data[[col]], data[[exp_var]]))$p.value, pdigits, eps)
         tmp = tmp %>% mutate(P_val=ifelse(row_number()==1, p, ''))
       }
       df = rbind(df, tmp)
@@ -62,10 +68,10 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
     for(col in numcol){
       es = colMeans(data1[col], na.rm = T)
       sd = sqrt(var(data1[col], na.rm = T))
-      p = format.pval(kruskal.test(as.formula(paste0(col, '~', exp_var)), data=data)$p.value, 3, 0.001)
-      tmp = data.frame(name = col,
-                       es_cl = paste0(round(es, 1), ' (', round(sd, 1), ')'))
+      tmp = data.frame(Variable = col,
+                       es_cl = paste0(round(es, esdigits), ' (', round(sd, esdigits), ')'))
       if(level==tail(levels, n=1)){
+        p = format.pval(kruskal.test(as.formula(paste0(col, '~', exp_var)), data=data)$p.value, pdigits, eps)
         tmp = tmp %>% mutate(P_val=ifelse(row_number()==1, p, ''))
       }
       df = rbind(df, tmp)
@@ -75,7 +81,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
       final = df
     }
     else{
-      final = final %>% left_join(df, by='name')
+      final = cbind(final, df %>% select(-Variable))
     }
   }
   if(is.null(output)) return(final)
@@ -85,4 +91,3 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
     done(rtffile)
   }
 }
-
