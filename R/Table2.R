@@ -13,7 +13,7 @@
 #' @param catcol A vector of factrozied categorical column names in character.  Default to NULL.
 #' @param esdigits Controlling the effect size digits. Default to 2.
 #' @param pdigits Controlling the significant p-value digits. Default to 2.
-#' @param eps P-value tolerane. Those less than eps are formatted as "< [eps]"
+#' @param eps P-value tolerane. Those less than eps are formatted as "< [eps]". Default to 0.001
 #' @param output String of path to store the output word file. For example, 'Table2.doc' or 'Table2.rtf'
 #' @return  If output is not specified, a dataframe will be returned. Otherwise, a rtf file will be saved in the specified path.
 #' @export
@@ -34,7 +34,7 @@
 Table2 = function(model, data, catcols=NULL, esdigits=2, output=NULL, pdigits=2, eps=0.001){
   out = round(data.frame(ES=exp(summary(model)$coefficients[, 1]),
                          LCL = exp(summary(model)$coefficients[, 1]-1.96*summary(model)$coefficients[, 2]),
-                         UCL = exp(summary(model)$coefficients[, 1]+1.96*summary(model)$coefficients[, 2])), digits) %>%
+                         UCL = exp(summary(model)$coefficients[, 1]+1.96*summary(model)$coefficients[, 2])), esdigits) %>%
     mutate(Variable=rownames(.), ES_CI=paste0(ES, ' (', LCL, ', ', UCL, ')'))
   if('coxph' %in% class(model)) p =  summary(model)$coefficients[, 6]
   if('glm' %in% class(model)|'lm' %in% class(model)) p = summary(model)$coefficients[, 4]
