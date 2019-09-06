@@ -1,4 +1,4 @@
-# Table1
+# Journal style reporting (JReport)
 
 ## Description
 This packages helps to create journal style descriptive table (so called "Table 1") and model output table (so called "Table 2"). 
