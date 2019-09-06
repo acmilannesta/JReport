@@ -1,5 +1,5 @@
 # Journal style reporting (R-package "JReport")
-<img style="float: right;" src="https://github.com/acmilannesta/JReport/blob/master/Icon.JPG">
+![image alt >](https://github.com/acmilannesta/JReport/blob/master/Icon.JPG)
 
 
 ## Description
