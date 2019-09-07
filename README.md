@@ -1,5 +1,4 @@
-# Journal style reporting (R-package "JReport")
-<div style="float: right"><img src="https://github.com/acmilannesta/JReport/blob/master/Icon.JPG" width="200" /></div>
+# Journal style reporting (R-package "JReport") <img src='https://github.com/acmilannesta/JReport/blob/master/Icon.JPG' align="right" height="139" />
 
 
 ## Description
