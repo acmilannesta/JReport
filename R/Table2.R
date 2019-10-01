@@ -31,34 +31,35 @@
 #'   1            0.05 (0, 1.14)     0.060
 
 
-Table2 = function(model, data, catcols=NULL, esdigits=2, output=NULL, pdigits=2, eps=0.001){
-  for (p in c('dplyr', 'rtf')){
-    if (!p %in% rownames(installed.packages())) install.packages(p)
+Table2 = function(model, data, catcols = NULL, esdigits = 2, output = NULL, 
+          pdigits = 2, eps = 0.001) 
+{
+  for (p in c("dplyr", "rtf")) {
+    if (!p %in% rownames(installed.packages())) 
+      install.packages(p)
     library(p, character.only = T)
   }
-  out = round(data.frame(ES=exp(summary(model)$coefficients[, 1]),
-                         LCL = exp(summary(model)$coefficients[, 1]-1.96*summary(model)$coefficients[, 2]),
-                         UCL = exp(summary(model)$coefficients[, 1]+1.96*summary(model)$coefficients[, 2])), esdigits) %>%
-    mutate(Variable=rownames(.), ES_CI=paste0(ES, ' (', LCL, ', ', UCL, ')'))
-  if('coxph' %in% class(model)) p =  summary(model)$coefficients[, 6]
-  if('glm' %in% class(model)|'lm' %in% class(model)) p = summary(model)$coefficients[, 4]
-  out = out %>%
-    right_join(data.frame(P_val=p) %>%
-                 mutate(Variable=rownames(.),
-                        P_val=format.pval(P_val, digits=pdigits, eps=eps)), 'Variable') %>%
-    select(Variable, ES_CI, P_val)
-
-  for(x in catcols){
-    out = out %>%
-      mutate(Variable = gsub(paste0('^', x), '', Variable)) %>%
-      add_row(Variable=x, ES_CI='', P_val='', .before = which(.$Variable==levels(data[[x]])[2])) %>%
-      add_row(Variable=levels(data[[x]])[1], ES_CI='Ref', P_val='Ref', .before = which(.$Variable==levels(data[[x]])[2]))
+  if(class(model)=='coxph') secol = 'se(coef)'
+  else secol='Std. Error'
+  out = round(data.frame(ES = exp(summary(model)$coefficients[, 1]), 
+                         LCL = exp(summary(model)$coefficients[, 1] - 1.96 * summary(model)$coefficients[, secol]), 
+                         UCL = exp(summary(model)$coefficients[, 1] + 1.96 * summary(model)$coefficients[, secol])), esdigits) %>% 
+    mutate(Variable = rownames(.), ES_CI = paste0(ES, " (", LCL, ", ", UCL, ")"))
+  p = summary(model)$coefficients[, 'Pr(>|z|)']
+  out = out %>% right_join(data.frame(P_val = p) %>% mutate(Variable = rownames(.), 
+                                                            P_val = format.pval(P_val, digits = pdigits, eps = eps)), 
+                           "Variable") %>% select(Variable, ES_CI, P_val)
+  for (x in catcols) {
+    out = out %>% mutate(Variable = gsub(paste0("^",x), "", Variable)) %>% 
+      add_row(Variable = x, ES_CI = "", P_val = "", .before = which(.$Variable == levels(data[[x]])[2])) %>% 
+      add_row(Variable = levels(data[[x]])[1],  ES_CI = "Ref", P_val = "Ref", .before = which(.$Variable == levels(data[[x]])[2]))
   }
-  if(is.null(output)) return(out)
+  if (is.null(output)) 
+    return(out)
   else {
     rtffile = RTF(output)
-    addTable(rtffile, out, col.justify = c('L', rep('C', 2)), header.col.justify = 'C')
+    addTable(rtffile, out, col.justify = c("L", rep("C", 
+                                                    2)), header.col.justify = "C")
     done(rtffile)
   }
 }
-
