@@ -76,7 +76,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
       }
       df = rbind(df, tmp)
     }
-    df = df %>% rename(!!paste0(expvar, '=', level, ' (n=', nrow(data1), ')'):=es_cl)
+    df = df %>% rename(!!paste0(exp_var, '=', level, ' (n=', nrow(data1), ')'):=es_cl)
     if(level==head(levels, n=1)){
       final = df
     }
