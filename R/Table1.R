@@ -58,7 +58,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
         rename(Variable=Var1) %>%
         mutate(es_cl = paste0(Freq, ' (', Pct, ')')) %>%
         add_row(Variable=col, es_cl='', .before = 1) %>%
-        select(-c(Freq, Pct))
+        dplyr::select(-c(Freq, Pct))
       if(level==tail(levels, n=1)){
         p = format.pval(chisq.test(table(data[[col]], data[[exp_var]]))$p.value, pdigits, eps)
         tmp = tmp %>% mutate(P_val=ifelse(row_number()==1, p, ''))
