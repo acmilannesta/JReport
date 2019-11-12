@@ -39,8 +39,14 @@ Table2 = function(model, data, catcols = NULL, esdigits = 2, output = NULL,
       install.packages(p)
     library(p, character.only = T)
   }
-  if('coxph' %in% class(model)) secol = 'se(coef)'
-  else secol='Std. Error'
+  if('coxph' %in% class(model)) {
+            secol = 'se(coef)'
+            pcol = 'p'
+            }
+  else {
+            secol='Std. Error'
+            pcol = 'Pr(>|z|)'
+            }
   out = round(data.frame(ES = exp(summary(model)$coefficients[, 1]), 
                          LCL = exp(summary(model)$coefficients[, 1] - 1.96 * summary(model)$coefficients[, secol]), 
                          UCL = exp(summary(model)$coefficients[, 1] + 1.96 * summary(model)$coefficients[, secol])), esdigits) %>% 
