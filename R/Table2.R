@@ -51,7 +51,7 @@ Table2 = function(model, data, catcols = NULL, esdigits = 2, output = NULL,
                          LCL = exp(summary(model)$coefficients[, 1] - 1.96 * summary(model)$coefficients[, secol]), 
                          UCL = exp(summary(model)$coefficients[, 1] + 1.96 * summary(model)$coefficients[, secol])), esdigits) %>% 
     mutate(Variable = rownames(.), ES_CI = paste0(ES, " (", LCL, ", ", UCL, ")"))
-  p = summary(model)$coefficients[, 'Pr(>|z|)']
+  p = summary(model)$coefficients[, pcol]
   out = out %>% right_join(data.frame(P_val = p) %>% mutate(Variable = rownames(.), 
                                                             P_val = format.pval(P_val, digits = pdigits, eps = eps)), 
                            "Variable") %>% select(Variable, ES_CI, P_val)
