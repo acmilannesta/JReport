@@ -81,7 +81,7 @@ Table1 = function(data, numcol = NULL, catcol = NULL, exp_var, output = NULL, ov
       final = df
     }
     else{
-      final = cbind(final, df %>% select(-Variable))
+      final = cbind(final, df %>% dplyr::select(-Variable))
     }
   }
   if(is.null(output)) return(final)
