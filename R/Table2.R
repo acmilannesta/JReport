@@ -54,7 +54,7 @@ Table2 = function(model, data, catcols = NULL, esdigits = 2, output = NULL,
   p = summary(model)$coefficients[, pcol]
   out = out %>% right_join(data.frame(P_val = p) %>% mutate(Variable = rownames(.), 
                                                             P_val = format.pval(P_val, digits = pdigits, eps = eps)), 
-                           "Variable") %>% select(Variable, ES_CI, P_val)
+                           "Variable") %>% dplyr::select(Variable, ES_CI, P_val)
   for (x in catcols) {
     out = out %>% mutate(Variable = gsub(paste0("^",x), "", Variable)) %>% 
       add_row(Variable = x, ES_CI = "", P_val = "", .before = which(.$Variable == levels(data[[x]])[2])) %>% 
